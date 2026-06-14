@@ -1676,37 +1676,44 @@
             <p class="consult-p">We build a working prototype of your solution before any commitment is made. No
               discovery call required.</p>
 
-            <div class="form-row">
-              <div class="form-field">
-                <label for="f-name">Your Name</label>
-                <input class="form-input" type="text" id="f-name" placeholder="Usman Rauf" autocomplete="name" />
+            <form id="demoForm" onsubmit="handleSubmit(event)">
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="f-name">Your Name</label>
+                  <input class="form-input" type="text" id="f-name" name="name" placeholder="Usman Rauf"
+                    autocomplete="name" required />
+                </div>
+                <div class="form-field">
+                  <label for="f-phone">Business Phone / WhatsApp</label>
+                  <input class="form-input" type="tel" id="f-phone" name="phone" placeholder="+92 300 000 0000"
+                    autocomplete="tel" required />
+                </div>
               </div>
-              <div class="form-field">
-                <label for="f-phone">Business Phone / WhatsApp</label>
-                <input class="form-input" type="tel" id="f-phone" placeholder="+92 300 000 0000" autocomplete="tel" />
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="f-biz">Business Name</label>
+                  <input class="form-input" type="text" id="f-biz" name="business"
+                    placeholder="Your company or brand" />
+                </div>
+                <div class="form-field">
+                  <label for="f-industry">Industry</label>
+                  <input class="form-input" type="text" id="f-industry" name="industry"
+                    placeholder="e.g. Clinic, Restaurant, Salon..." />
+                </div>
               </div>
-            </div>
-            <div class="form-row">
-              <div class="form-field">
-                <label for="f-biz">Business Name</label>
-                <input class="form-input" type="text" id="f-biz" placeholder="Your company or brand" />
+              <div class="form-row">
+                <div class="form-field form-full">
+                  <label for="f-bottleneck">Describe Your Operational Bottleneck</label>
+                  <textarea class="form-input form-textarea" id="f-bottleneck" name="bottleneck"
+                    placeholder="e.g. We take bookings over WhatsApp and lose track of who has paid deposits. Staff waste 3-4 hours daily coordinating manually..."
+                    required></textarea>
+                </div>
               </div>
-              <div class="form-field">
-                <label for="f-industry">Industry</label>
-                <input class="form-input" type="text" id="f-industry" placeholder="e.g. Clinic, Restaurant, Salon..." />
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-field form-full">
-                <label for="f-bottleneck">Describe Your Operational Bottleneck</label>
-                <textarea class="form-input form-textarea" id="f-bottleneck"
-                  placeholder="e.g. We take bookings over WhatsApp and lose track of who has paid deposits. Staff waste 3-4 hours daily coordinating manually..."></textarea>
-              </div>
-            </div>
-            <button class="form-submit" onclick="handleSubmit(event)">
-              Request My Custom Demo Build
-              <span style="margin-left:6px;">&#8594;</span>
-            </button>
+              <button type="submit" class="form-submit">
+                Request My Custom Demo Build
+                <span style="margin-left:6px;">&#8594;</span>
+              </button>
+            </form>
             <p class="form-note">We respond within 48 business hours. No sales scripts, no obligation. Just engineering.
             </p>
           </div>
@@ -2017,9 +2024,14 @@
       document.getElementById(modalId + '-' + tabId).classList.add('active');
     }
 
-    // ── FORM SUBMIT ──
+    // ── FORM SUBMIT TO GOOGLE SHEETS ──
     function handleSubmit(e) {
       e.preventDefault();
+
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbzmgmbooO1h7i4-K1WLc6bpgdSltgVO18Bf7IRPHB8YvJMcjMJmmvS1XN2qcmsF49lo/exec';
+      const form = document.getElementById('demoForm');
+      const btn = form.querySelector('.form-submit');
+
       const name = document.getElementById('f-name').value.trim();
       const phone = document.getElementById('f-phone').value.trim();
       const bottleneck = document.getElementById('f-bottleneck').value.trim();
@@ -2035,15 +2047,31 @@
         return;
       }
 
-      // Simulate submission
-      const btn = e.target;
       btn.textContent = 'Sending...';
       btn.disabled = true;
 
-      setTimeout(() => {
-        document.getElementById('consult-form-wrap').style.display = 'none';
-        document.getElementById('form-success').classList.add('show');
-      }, 1200);
+      fetch(scriptURL, {
+        method: 'POST',
+        body: new FormData(form)
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.result === 'success') {
+            document.getElementById('consult-form-wrap').style.display = 'none';
+            document.getElementById('form-success').classList.add('show');
+          } else {
+            console.error('Apps Script Error:', data.error);
+            alert('Something went wrong. Please try again.');
+            btn.textContent = 'Request My Custom Demo Build →';
+            btn.disabled = false;
+          }
+        })
+        .catch(error => {
+          console.error('Network Error:', error);
+          alert('Failed to connect. Please try again.');
+          btn.textContent = 'Request My Custom Demo Build →';
+          btn.disabled = false;
+        });
     }
   </script>
 </body>
