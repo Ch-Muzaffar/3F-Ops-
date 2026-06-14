@@ -1,0 +1,2051 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3fOps — Elite Digital Engineering Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cream: #FAF9F5;
+      --cream-dark: #F3F1EA;
+      --slate: #0F172A;
+      --slate-mid: #334155;
+      --slate-light: #64748B;
+      --blue-deep: #1E40AF;
+      --blue-royal: #3B82F6;
+      --blue-sky: #93C5FD;
+      --white: #FFFFFF;
+      --border: rgba(15, 23, 42, 0.08);
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 4px 16px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(15, 23, 42, 0.05);
+      --shadow-lg: 0 20px 48px rgba(15, 23, 42, 0.10), 0 8px 24px rgba(15, 23, 42, 0.06);
+      --shadow-lift: 0 28px 60px rgba(30, 64, 175, 0.18), 0 8px 24px rgba(30, 64, 175, 0.10);
+      --radius-sm: 12px;
+      --radius-md: 18px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      --font: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--cream);
+      color: var(--slate);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--cream);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--blue-royal);
+      border-radius: 99px;
+    }
+
+    /* ── UTILITY ── */
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+    }
+
+    .grad-text {
+      background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-royal) 60%, #60A5FA 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .grad-bg {
+      background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-royal) 100%);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(250, 249, 245, 0.82);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s var(--ease-out);
+    }
+
+    nav.scrolled {
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--slate);
+    }
+
+    .nav-logo-icon {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-text {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      color: var(--slate);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--slate-mid);
+      padding: 6px 14px;
+      border-radius: 99px;
+      transition: all 0.2s var(--ease-out);
+    }
+
+    .nav-links a:hover {
+      color: var(--slate);
+      background: rgba(15, 23, 42, 0.05);
+    }
+
+    .btn-nav {
+      font-family: var(--font);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--white);
+      background: var(--slate);
+      border: none;
+      border-radius: 99px;
+      padding: 10px 20px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.25s var(--ease-out);
+      white-space: nowrap;
+    }
+
+    .btn-nav:hover {
+      background: var(--blue-deep);
+      box-shadow: var(--shadow-lift);
+      transform: translateY(-1px);
+    }
+
+    .btn-nav:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    .nav-mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      color: var(--slate);
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      padding: 12px 24px 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--slate-mid);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .mobile-menu a:hover {
+      color: var(--blue-deep);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100dvh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 80px;
+      padding: 120px 0 80px;
+    }
+
+    .hero-left {
+      max-width: 600px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(59, 130, 246, 0.08);
+      border: 1px solid rgba(59, 130, 246, 0.18);
+      border-radius: 99px;
+      padding: 6px 14px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--blue-deep);
+      letter-spacing: 0.02em;
+      margin-bottom: 28px;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--blue-royal);
+      border-radius: 50%;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: scale(0.7);
+      }
+    }
+
+    .hero-h1 {
+      font-size: clamp(36px, 4.5vw, 58px);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -1.5px;
+      color: var(--slate);
+      margin-bottom: 22px;
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--slate-light);
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 36px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 26px;
+      border-radius: 99px;
+      font-family: var(--font);
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-royal) 100%);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(30, 64, 175, 0.30);
+      transition: all 0.28s var(--ease-out);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 10px 36px rgba(30, 64, 175, 0.40);
+      transform: translateY(-2px);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 24px;
+      border-radius: 99px;
+      font-family: var(--font);
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--slate);
+      background: transparent;
+      border: 1.5px solid var(--border);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s var(--ease-out);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(15, 23, 42, 0.20);
+      background: rgba(15, 23, 42, 0.03);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--slate-light);
+    }
+
+    .hero-trust-icon {
+      width: 16px;
+      height: 16px;
+      color: var(--blue-royal);
+      flex-shrink: 0;
+    }
+
+    .hero-right {
+      position: relative;
+      padding-top: 30px;
+    }
+
+    .hero-visual {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-visual::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue-deep), var(--blue-royal), var(--blue-sky));
+    }
+
+    .hv-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--blue-royal);
+      margin-bottom: 18px;
+    }
+
+    .hv-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hv-row:last-of-type {
+      border-bottom: none;
+    }
+
+    .hv-metric-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--slate-mid);
+    }
+
+    .hv-metric-val {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--slate);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hv-badge {
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 99px;
+      background: rgba(34, 197, 94, 0.10);
+      color: #16A34A;
+    }
+
+    .hv-bar-wrap {
+      width: 120px;
+      height: 5px;
+      background: var(--cream-dark);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+
+    .hv-bar {
+      height: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--blue-deep), var(--blue-royal));
+      animation: bar-grow 1.6s var(--ease-out) forwards;
+    }
+
+    @keyframes bar-grow {
+      from {
+        width: 0;
+      }
+    }
+
+    .hv-footer {
+      margin-top: 20px;
+      padding: 14px 16px;
+      background: var(--cream);
+      border-radius: var(--radius-sm);
+      font-size: 12.5px;
+      color: var(--slate-light);
+      line-height: 1.5;
+    }
+
+    .hv-footer strong {
+      color: var(--slate);
+    }
+
+    /* Floating accent chips */
+    .hero-chip {
+      position: absolute;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      box-shadow: var(--shadow-md);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--slate);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .chip-1 {
+      top: -22px;
+      right: 40px;
+      animation: float1 3.5s ease-in-out infinite;
+    }
+
+    .chip-2 {
+      bottom: -18px;
+      left: 20px;
+      animation: float2 4s ease-in-out infinite;
+    }
+
+    @keyframes float1 {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    @keyframes float2 {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(6px);
+      }
+    }
+
+    .chip-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22C55E;
+    }
+
+    /* ── SECTION SHARED ── */
+    section {
+      padding: 96px 0;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue-royal);
+      margin-bottom: 16px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 20px;
+      height: 1.5px;
+      background: var(--blue-royal);
+      border-radius: 99px;
+    }
+
+    .section-h2 {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 800;
+      letter-spacing: -1.2px;
+      line-height: 1.12;
+      color: var(--slate);
+      margin-bottom: 14px;
+    }
+
+    .section-sub {
+      font-size: 16.5px;
+      color: var(--slate-light);
+      line-height: 1.65;
+      max-width: 520px;
+    }
+
+    /* ── SOLUTIONS GRID ── */
+    .solutions-bg {
+      background: var(--white);
+    }
+
+    .solutions-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 56px;
+    }
+
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .sol-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transition: all 0.30s var(--ease-out);
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sol-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue-deep), var(--blue-royal));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s var(--ease-out);
+    }
+
+    .sol-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(59, 130, 246, 0.15);
+    }
+
+    .sol-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .sol-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, rgba(30, 64, 175, 0.10), rgba(59, 130, 246, 0.06));
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue-deep);
+      flex-shrink: 0;
+    }
+
+    .sol-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue-royal);
+      margin-bottom: 8px;
+    }
+
+    .sol-title {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+      color: var(--slate);
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+
+    .sol-text {
+      font-size: 14px;
+      color: var(--slate-light);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .sol-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--blue-deep);
+      text-decoration: none;
+      padding: 0;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-family: var(--font);
+      transition: gap 0.2s var(--ease-out);
+    }
+
+    .sol-cta:hover {
+      gap: 10px;
+    }
+
+    .sol-cta svg {
+      flex-shrink: 0;
+      transition: transform 0.2s var(--ease-out);
+    }
+
+    .sol-cta:hover svg {
+      transform: translateX(2px) translateY(-2px);
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(15, 23, 42, 0.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      max-width: 520px;
+      width: 100%;
+      position: relative;
+      box-shadow: var(--shadow-lg);
+      animation: modal-in 0.35s var(--ease-out);
+    }
+
+    @keyframes modal-in {
+      from {
+        opacity: 0;
+        transform: scale(0.94) translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--cream);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--slate-mid);
+      transition: background 0.2s;
+      font-size: 18px;
+    }
+
+    .modal-close:hover {
+      background: var(--cream-dark);
+    }
+
+    .modal-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue-royal);
+      margin-bottom: 12px;
+    }
+
+    .modal-title {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--slate);
+      margin-bottom: 10px;
+    }
+
+    .modal-body {
+      font-size: 14.5px;
+      color: var(--slate-light);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .modal-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0;
+    }
+
+    .tab-btn {
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--slate-light);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      padding: 8px 14px;
+      margin-bottom: -1px;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      color: var(--blue-deep);
+      border-bottom-color: var(--blue-royal);
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .tab-panel p {
+      font-size: 14px;
+      color: var(--slate-light);
+      line-height: 1.7;
+    }
+
+    .tab-panel ul {
+      list-style: none;
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .tab-panel ul li {
+      font-size: 13.5px;
+      color: var(--slate-mid);
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+    }
+
+    .tab-panel ul li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      background: var(--blue-royal);
+      border-radius: 50%;
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    /* ── ENGINEERING CORE ── */
+    .core-bg {
+      background: var(--slate);
+    }
+
+    .core-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .core-left .section-label {
+      color: var(--blue-sky);
+    }
+
+    .core-left .section-label::before {
+      background: var(--blue-sky);
+    }
+
+    .core-left .section-h2 {
+      color: var(--white);
+    }
+
+    .core-left .section-sub {
+      color: rgba(255, 255, 255, 0.55);
+      max-width: 480px;
+    }
+
+    .core-pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-top: 48px;
+    }
+
+    .pillar {
+      padding: 24px 28px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.25s var(--ease-out);
+      border: 1px solid transparent;
+    }
+
+    .pillar:hover,
+    .pillar.active {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .pillar-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue-sky);
+      margin-bottom: 6px;
+    }
+
+    .pillar-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+    }
+
+    .pillar-text {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.6;
+    }
+
+    .core-right {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .core-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .core-stat-val {
+      font-size: 42px;
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--white) 40%, var(--blue-sky));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .core-stat-desc {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .core-divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    /* ── CONSULTATION ── */
+    .consult-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .consult-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 56px 48px;
+      box-shadow: var(--shadow-lg);
+      margin-top: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .consult-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue-deep), var(--blue-royal), var(--blue-sky));
+    }
+
+    .consult-h3 {
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      color: var(--slate);
+      margin-bottom: 10px;
+    }
+
+    .consult-p {
+      font-size: 15.5px;
+      color: var(--slate-light);
+      margin-bottom: 36px;
+      line-height: 1.65;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-align: left;
+    }
+
+    .form-field label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--slate-mid);
+      letter-spacing: 0.03em;
+    }
+
+    .form-input {
+      font-family: var(--font);
+      font-size: 14.5px;
+      color: var(--slate);
+      background: var(--cream);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      width: 100%;
+    }
+
+    .form-input::placeholder {
+      color: #94A3B8;
+    }
+
+    .form-input:focus {
+      border-color: var(--blue-royal);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+    }
+
+    .form-textarea {
+      resize: none;
+      min-height: 100px;
+    }
+
+    .form-full {
+      grid-column: 1 / -1;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 15px;
+      margin-top: 6px;
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--blue-deep), var(--blue-royal));
+      border: none;
+      border-radius: 99px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(30, 64, 175, 0.30);
+      transition: all 0.28s var(--ease-out);
+    }
+
+    .form-submit:hover {
+      box-shadow: 0 10px 36px rgba(30, 64, 175, 0.40);
+      transform: translateY(-2px);
+    }
+
+    .form-submit:active {
+      transform: translateY(0) scale(0.99);
+    }
+
+    .form-note {
+      margin-top: 16px;
+      font-size: 12px;
+      color: #94A3B8;
+    }
+
+    .form-success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding: 32px 0;
+    }
+
+    .form-success.show {
+      display: flex;
+    }
+
+    .form-success-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(34, 197, 94, 0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #16A34A;
+    }
+
+    .form-success h4 {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--slate);
+    }
+
+    .form-success p {
+      font-size: 14.5px;
+      color: var(--slate-light);
+      text-align: center;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--slate);
+      padding: 64px 0 36px;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      margin-bottom: 32px;
+    }
+
+    .footer-brand-name {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .footer-desc {
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.42);
+      line-height: 1.7;
+      max-width: 300px;
+      margin-bottom: 20px;
+    }
+
+    .footer-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--blue-sky);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-email:hover {
+      color: var(--white);
+    }
+
+    .footer-col-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(255, 255, 255, 0.30);
+      margin-bottom: 18px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.50);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-copy {
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, 0.28);
+    }
+
+    .footer-tagline {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.22);
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+      transition-delay: 0.08s;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 0.16s;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 0.24s;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        padding: 100px 0 60px;
+      }
+
+      .hero-left {
+        max-width: 100%;
+      }
+
+      .hero-right {
+        display: none;
+      }
+
+      .solutions-head {
+        grid-template-columns: 1fr;
+      }
+
+      .solutions-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .core-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 64px 0;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .btn-nav {
+        display: none;
+      }
+
+      .nav-mobile-toggle {
+        display: flex;
+      }
+
+      .solutions-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .consult-card {
+        padding: 36px 24px;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .core-right {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-h1 {
+        font-size: 32px;
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .modal-box {
+        padding: 28px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ════════════════════════════ NAV ════════════════════════════ -->
+  <nav id="main-nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#" class="nav-logo" aria-label="3fOps Home">
+          <img class="nav-logo-icon" src="logo_mark.png" alt="" />
+          <span class="nav-logo-text">3fOps</span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#approach">Our Approach</a></li>
+          <li><a href="#solutions">Solutions</a></li>
+          <li><a href="#scale">How We Scale</a></li>
+          <li><a href="#connect">Let's Connect</a></li>
+        </ul>
+
+        <a href="#connect" class="btn-nav">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            aria-hidden="true">
+            <path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
+          </svg>
+          Schedule a Strategy Call
+        </a>
+
+        <button class="nav-mobile-toggle" aria-label="Menu" id="mobile-toggle" aria-expanded="false">
+          <svg id="icon-menu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+          <svg id="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" style="display:none">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+
+      <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
+        <a href="#approach" onclick="closeMobile()">Our Approach</a>
+        <a href="#solutions" onclick="closeMobile()">Solutions</a>
+        <a href="#scale" onclick="closeMobile()">How We Scale</a>
+        <a href="#connect" onclick="closeMobile()">Let's Connect</a>
+        <a href="#connect" onclick="closeMobile()"
+          style="color:var(--blue-deep);font-weight:700;border-bottom:none;margin-top:4px;">Schedule a Strategy Call</a>
+      </nav>
+    </div>
+  </nav>
+
+  <!-- ════════════════════════════ HERO ════════════════════════════ -->
+  <section id="approach" style="padding-top:0;padding-bottom:0;">
+    <div class="container">
+      <div class="hero">
+        <div class="hero-left">
+          <div class="hero-badge reveal">
+            <span class="hero-badge-dot"></span>
+            Now accepting B2B partnerships for Q3 2026
+          </div>
+          <h1 class="hero-h1 reveal reveal-delay-1">
+            We Engineer <span class="grad-text">High-Conversion</span> Digital Systems for High-Growth Businesses.
+          </h1>
+          <p class="hero-sub reveal reveal-delay-2">
+            No generic templates. No rigid builders. At 3fOps, we design and deploy bespoke, pixel-perfect web
+            applications and automated pipeline architectures engineered entirely around your unique daily operational
+            workflows.
+          </p>
+          <div class="hero-ctas reveal reveal-delay-3">
+            <a href="#solutions" class="btn-primary">
+              Explore Custom Solutions
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+            <a href="#scale" class="btn-secondary">View Framework</a>
+          </div>
+          <div class="hero-trust reveal reveal-delay-3">
+            <svg class="hero-trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            Engineered for real-world optimization. Proudly operating out of Lahore.
+          </div>
+        </div>
+
+        <div class="hero-right reveal">
+          <div class="hero-chip chip-1">
+            <span class="chip-dot"></span>
+            Live deployment
+          </div>
+          <div class="hero-visual">
+            <div class="hv-label">System Performance Overview</div>
+            <div class="hv-row">
+              <div>
+                <div class="hv-metric-name">Average load time</div>
+                <div class="hv-bar-wrap" style="margin-top:8px;">
+                  <div class="hv-bar" style="width:91%;"></div>
+                </div>
+              </div>
+              <div class="hv-metric-val">
+                0.94s
+                <span class="hv-badge">Fast</span>
+              </div>
+            </div>
+            <div class="hv-row">
+              <div>
+                <div class="hv-metric-name">Booking conversion rate</div>
+                <div class="hv-bar-wrap" style="margin-top:8px;">
+                  <div class="hv-bar" style="width:76%;animation-delay:0.2s;"></div>
+                </div>
+              </div>
+              <div class="hv-metric-val">
+                +38.4%
+                <span class="hv-badge">Up</span>
+              </div>
+            </div>
+            <div class="hv-row">
+              <div>
+                <div class="hv-metric-name">Avg. ticket upsell value</div>
+                <div class="hv-bar-wrap" style="margin-top:8px;">
+                  <div class="hv-bar" style="width:83%;animation-delay:0.4s;"></div>
+                </div>
+              </div>
+              <div class="hv-metric-val">
+                +PKR 1,240
+                <span class="hv-badge">Up</span>
+              </div>
+            </div>
+            <div class="hv-row">
+              <div>
+                <div class="hv-metric-name">Manual ops hours saved/wk</div>
+                <div class="hv-bar-wrap" style="margin-top:8px;">
+                  <div class="hv-bar" style="width:94%;animation-delay:0.6s;"></div>
+                </div>
+              </div>
+              <div class="hv-metric-val">
+                18.7 hrs
+                <span class="hv-badge">Up</span>
+              </div>
+            </div>
+            <div class="hv-footer">
+              <strong>Composite client average</strong> across active 3fOps deployments. Individual results vary by
+              business size and workflow complexity.
+            </div>
+          </div>
+          <div class="hero-chip chip-2">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              aria-hidden="true">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            Zero third-party plugins
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════ SOLUTIONS ════════════════════════════ -->
+  <section id="solutions" class="solutions-bg">
+    <div class="container">
+      <div class="solutions-head">
+        <div>
+          <div class="section-label reveal">Custom Solutions Framework</div>
+          <h2 class="section-h2 reveal reveal-delay-1">Three core operational problems. One precise engineering answer.
+          </h2>
+        </div>
+        <div>
+          <p class="section-sub reveal reveal-delay-2">
+            Every bottleneck we solve maps to a measurable revenue outcome. These are not themes — they are the
+            operational levers your business runs on.
+          </p>
+        </div>
+      </div>
+
+      <div class="solutions-grid">
+        <!-- Card 1 -->
+        <div class="sol-card reveal reveal-delay-1">
+          <div class="sol-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M9 11l3 3L22 4" />
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+            </svg>
+          </div>
+          <div>
+            <div class="sol-num">01 — Intake & Capture</div>
+            <div class="sol-title">High-Urgency Intake & On-Demand Booking Funnels</div>
+            <div class="sol-text">Replacing messy manual communication with streamlined, step-by-step user pathways that
+              capture high-intent customers, automate scheduling, and dynamically route booking data instantly.</div>
+          </div>
+          <button class="sol-cta" onclick="openModal('funnel')" aria-label="Explore Funnel framework">
+            Explore Interactive Funnel
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M7 17L17 7M7 7h10v10" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="sol-card reveal reveal-delay-2">
+          <div class="sol-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="2" y="3" width="20" height="14" rx="2" />
+              <line x1="8" y1="21" x2="16" y2="21" />
+              <line x1="12" y1="17" x2="12" y2="21" />
+            </svg>
+          </div>
+          <div>
+            <div class="sol-num">02 — Upsell & Conversion</div>
+            <div class="sol-title">High-Margin Upsell & Automated Checkout Matrices</div>
+            <div class="sol-text">Intelligent, highly tactile onboarding interfaces that dynamically calculate variables
+              and cross-sell premium add-ons at checkout — boosting your average ticket size automatically.</div>
+          </div>
+          <button class="sol-cta" onclick="openModal('matrix')" aria-label="Explore Conversion Matrix">
+            Explore Conversion Matrix
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M7 17L17 7M7 7h10v10" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="sol-card reveal reveal-delay-3">
+          <div class="sol-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="3" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="3" width="7" height="7" rx="1" />
+              <rect x="3" y="14" width="7" height="7" rx="1" />
+              <rect x="14" y="14" width="7" height="7" rx="1" />
+            </svg>
+          </div>
+          <div>
+            <div class="sol-num">03 — Allocation & Retention</div>
+            <div class="sol-title">Real-Time Grid Allocation & Retention Engines</div>
+            <div class="sol-text">Visual, real-time matrix dashboards that lock down resource allocations instantly,
+              utilizing partial-deposit structures to secure commitments and completely eliminate cancellation friction.
+            </div>
+          </div>
+          <button class="sol-cta" onclick="openModal('grid')" aria-label="Explore Live Grid">
+            Explore Live Grid
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M7 17L17 7M7 7h10v10" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════ ENGINEERING CORE ════════════════════════════ -->
+  <section id="scale" class="core-bg">
+    <div class="container">
+      <div class="core-inner">
+        <div class="core-left">
+          <div class="section-label reveal">The 3fOps Engineering Core</div>
+          <h2 class="section-h2 reveal reveal-delay-1" style="color:#fff;">Our promise to your growth — built into every
+            single line of code.</h2>
+          <p class="section-sub reveal reveal-delay-2" style="color:rgba(255,255,255,0.55);">
+            We don't just build software. We architect operational competitive advantages that compound in value the
+            longer they run.
+          </p>
+          <div class="core-pillars">
+            <div class="pillar active reveal reveal-delay-1" id="p1" onclick="setActivePillar(1)">
+              <div class="pillar-num">01</div>
+              <div class="pillar-title">Meticulous Speed</div>
+              <div class="pillar-text">Lightning-fast architectures optimized to load under 1.5 seconds, guaranteeing
+                you never lose a mobile customer due to slow load times. Every millisecond is a conversion decision.
+              </div>
+            </div>
+            <div class="pillar reveal reveal-delay-2" id="p2" onclick="setActivePillar(2)">
+              <div class="pillar-num">02</div>
+              <div class="pillar-title">Eliminating Operational Chaos</div>
+              <div class="pillar-text">We replace endless manual WhatsApp threads, missed phone calls, and spreadsheet
+                errors with automated, real-time software workflows that run your operations while you sleep.</div>
+            </div>
+            <div class="pillar reveal reveal-delay-3" id="p3" onclick="setActivePillar(3)">
+              <div class="pillar-num">03</div>
+              <div class="pillar-title">Zero Bloat Codebase</div>
+              <div class="pillar-text">Hand-crafted code that belongs entirely to you — built without heavy,
+                tracking-heavy plugins or rigid third-party builders that quietly own your business infrastructure.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="core-right reveal">
+          <div class="core-stat">
+            <div class="core-stat-val">&lt; 1.5s</div>
+            <div class="core-stat-desc">Guaranteed page load target across all deployments</div>
+          </div>
+          <div class="core-divider"></div>
+          <div class="core-stat">
+            <div class="core-stat-val">100%</div>
+            <div class="core-stat-desc">Code ownership transferred to your business — no vendor lock-in, ever</div>
+          </div>
+          <div class="core-divider"></div>
+          <div class="core-stat">
+            <div class="core-stat-val">0</div>
+            <div class="core-stat-desc">Third-party bloat plugins used in our production builds</div>
+          </div>
+          <div class="core-divider"></div>
+          <div class="core-stat">
+            <div class="core-stat-val" style="font-size:32px;">Bespoke</div>
+            <div class="core-stat-desc">Every architecture scoped exclusively around your operational workflow — nothing
+              pre-packaged, ever</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════ CONSULTATION ════════════════════════════ -->
+  <section id="connect">
+    <div class="container">
+      <div class="consult-inner">
+        <div class="section-label reveal" style="justify-content:center;">Direct Consultation</div>
+        <h2 class="section-h2 reveal reveal-delay-1" style="text-align:center;">Have a unique operational
+          bottleneck?<br><span class="grad-text">Let's engineer the solution.</span></h2>
+        <p class="section-sub reveal reveal-delay-2" style="text-align:center;margin:0 auto;">
+          Describe the exact friction point that's costing your business time or revenue today. Our engineers will
+          respond with a customized live demo build scoped to your specific workflow — within 48 hours.
+        </p>
+
+        <div class="consult-card reveal reveal-delay-2">
+          <div id="consult-form-wrap">
+            <h3 class="consult-h3">Request a Customized Live Demo</h3>
+            <p class="consult-p">We build a working prototype of your solution before any commitment is made. No
+              discovery call required.</p>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="f-name">Your Name</label>
+                <input class="form-input" type="text" id="f-name" placeholder="Usman Rauf" autocomplete="name" />
+              </div>
+              <div class="form-field">
+                <label for="f-phone">Business Phone / WhatsApp</label>
+                <input class="form-input" type="tel" id="f-phone" placeholder="+92 300 000 0000" autocomplete="tel" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="f-biz">Business Name</label>
+                <input class="form-input" type="text" id="f-biz" placeholder="Your company or brand" />
+              </div>
+              <div class="form-field">
+                <label for="f-industry">Industry</label>
+                <input class="form-input" type="text" id="f-industry" placeholder="e.g. Clinic, Restaurant, Salon..." />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field form-full">
+                <label for="f-bottleneck">Describe Your Operational Bottleneck</label>
+                <textarea class="form-input form-textarea" id="f-bottleneck"
+                  placeholder="e.g. We take bookings over WhatsApp and lose track of who has paid deposits. Staff waste 3-4 hours daily coordinating manually..."></textarea>
+              </div>
+            </div>
+            <button class="form-submit" onclick="handleSubmit(event)">
+              Request My Custom Demo Build
+              <span style="margin-left:6px;">&#8594;</span>
+            </button>
+            <p class="form-note">We respond within 48 business hours. No sales scripts, no obligation. Just engineering.
+            </p>
+          </div>
+
+          <div class="form-success" id="form-success">
+            <div class="form-success-icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M20 6L9 17l-5-5" />
+              </svg>
+            </div>
+            <h4>Request Received</h4>
+            <p>Our engineering team will review your bottleneck and reach out with a customized demo plan within 48
+              hours. Check your WhatsApp and email.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════ FOOTER ════════════════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-brand-name">
+            <img src="logo_mark.png" alt="" style="width: 28px; height: 28px; object-fit: contain;" />
+            3fOps
+          </div>
+          <p class="footer-desc">A boutique engineering studio building bespoke digital systems for businesses that
+            demand precision, performance, and full operational control.</p>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <a href="mailto:team3fops@gmail.com" class="footer-email">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="M2 7l10 7 10-7" />
+              </svg>
+              team3fops@gmail.com
+            </a>
+            <a href="tel:+923296046403" class="footer-email">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                aria-hidden="true">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+              +92 329 6046403
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Navigate</div>
+          <ul class="footer-links">
+            <li><a href="#approach">Our Approach</a></li>
+            <li><a href="#solutions">Solutions</a></li>
+            <li><a href="#scale">How We Scale</a></li>
+            <li><a href="#connect">Let's Connect</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">What We Build</div>
+          <ul class="footer-links">
+            <li><a href="#solutions">Booking Funnels</a></li>
+            <li><a href="#solutions">Upsell Matrices</a></li>
+            <li><a href="#solutions">Grid Allocation Engines</a></li>
+            <li><a href="#connect">Custom Systems</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2026 3fOps. Elite Digital Craftsmanship. Proudly operating out of Lahore.</span>
+        <span class="footer-tagline">Built without shortcuts. Owned without conditions.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ════════════════════════════ MODALS ════════════════════════════ -->
+  <!-- Funnel Modal -->
+  <div class="modal-overlay" id="modal-funnel" role="dialog" aria-modal="true" aria-labelledby="mf-title">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('funnel')" aria-label="Close">&#x2715;</button>
+      <div class="modal-tag">01 — Intake & Capture</div>
+      <h3 class="modal-title" id="mf-title">High-Urgency Intake & On-Demand Booking Funnels</h3>
+      <p class="modal-body">We architect multi-step intake journeys that convert first-contact curiosity into locked-in
+        bookings — with zero manual follow-up required from your team.</p>
+      <div class="modal-tabs">
+        <button class="tab-btn active" onclick="switchTab(event,'funnel','what')">What It Does</button>
+        <button class="tab-btn" onclick="switchTab(event,'funnel','how')">How We Build It</button>
+        <button class="tab-btn" onclick="switchTab(event,'funnel','result')">Results</button>
+      </div>
+      <div class="tab-panel active" id="funnel-what">
+        <p>A fully automated intake system captures customer intent at the highest-urgency moment — before they scroll
+          away to a competitor. Booking data is validated, routed, and stored in real-time with instant confirmation.
+        </p>
+        <ul>
+          <li>Multi-step conditional forms that adapt to each customer's input</li>
+          <li>Automated WhatsApp and email confirmation dispatched in under 3 seconds</li>
+          <li>Real-time calendar sync with conflict detection</li>
+          <li>Partial deposit collection built directly into the booking flow</li>
+        </ul>
+      </div>
+      <div class="tab-panel" id="funnel-how">
+        <p>Built with React or Next.js front-ends, backed by a PostgreSQL or Firebase data layer, integrated into your
+          existing CRM or WhatsApp Business API — and deployed on infrastructure you fully own.</p>
+        <ul>
+          <li>Custom UI components, zero template dependencies</li>
+          <li>Webhook integrations to your existing tools (WhatsApp, Sheets, Notion)</li>
+          <li>Role-based admin dashboard for staff to manage incoming requests</li>
+          <li>Mobile-first, sub-1.5s load on 4G connections</li>
+        </ul>
+      </div>
+      <div class="tab-panel" id="funnel-result">
+        <p>Clients deploying our intake funnels report measurable reduction in no-shows, staff coordination hours, and
+          missed inquiry windows within the first 30 days.</p>
+        <ul>
+          <li>Average booking conversion improvement: +34.7% in first 60 days</li>
+          <li>Staff manual coordination time reduced by an average of 16 hrs/week</li>
+          <li>Zero double-bookings reported across all active deployments</li>
+          <li>Deposit collection rates increase to 91.3% vs 47% without automation</li>
+        </ul>
+      </div>
+      <a href="#connect" class="btn-primary" onclick="closeModal('funnel')"
+        style="display:inline-flex;margin-top:20px;">Request a Demo Build</a>
+    </div>
+  </div>
+
+  <!-- Matrix Modal -->
+  <div class="modal-overlay" id="modal-matrix" role="dialog" aria-modal="true" aria-labelledby="mm-title">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('matrix')" aria-label="Close">&#x2715;</button>
+      <div class="modal-tag">02 — Upsell & Conversion</div>
+      <h3 class="modal-title" id="mm-title">High-Margin Upsell & Automated Checkout Matrices</h3>
+      <p class="modal-body">Engineered to increase average order value on every single transaction — without hiring an
+        extra salesperson or changing how your staff operates.</p>
+      <div class="modal-tabs">
+        <button class="tab-btn active" onclick="switchTab(event,'matrix','what')">What It Does</button>
+        <button class="tab-btn" onclick="switchTab(event,'matrix','how')">How We Build It</button>
+        <button class="tab-btn" onclick="switchTab(event,'matrix','result')">Results</button>
+      </div>
+      <div class="tab-panel active" id="matrix-what">
+        <p>A dynamic pricing and upsell layer embedded directly into your checkout or service selection flow. The system
+          reads the customer's current cart state and surfaces precisely the right premium add-on at the optimal moment.
+        </p>
+        <ul>
+          <li>Context-aware upsell offers based on current selection value</li>
+          <li>One-click add-on acceptance without re-entering payment details</li>
+          <li>Live price calculator that updates in real-time as customers configure</li>
+          <li>Bundle logic that auto-applies discounts to incentivize higher-value combos</li>
+        </ul>
+      </div>
+      <div class="tab-panel" id="matrix-how">
+        <p>We engineer a rule-based offer engine connected to your product catalog — configurable entirely from an admin
+          panel your team manages without touching code.</p>
+        <ul>
+          <li>Custom pricing logic engine built in TypeScript</li>
+          <li>Admin panel to create and manage upsell rules without developer access</li>
+          <li>A/B test infrastructure for offer positioning and copy</li>
+          <li>Full analytics pipeline to track uplift per offer variant</li>
+        </ul>
+      </div>
+      <div class="tab-panel" id="matrix-result">
+        <p>The compounding effect of automated upselling is immediate and measurable. Every customer who passes through
+          a well-calibrated checkout matrix spends more than they originally planned — without feeling pressured.</p>
+        <ul>
+          <li>Average ticket size increase: +PKR 1,240 across active builds</li>
+          <li>Add-on acceptance rate: 38.2% with context-aware placements</li>
+          <li>Zero additional staff training required post-deployment</li>
+          <li>Monthly upsell revenue compounds as customer base grows</li>
+        </ul>
+      </div>
+      <a href="#connect" class="btn-primary" onclick="closeModal('matrix')"
+        style="display:inline-flex;margin-top:20px;">Request a Demo Build</a>
+    </div>
+  </div>
+
+  <!-- Grid Modal -->
+  <div class="modal-overlay" id="modal-grid" role="dialog" aria-modal="true" aria-labelledby="mg-title">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('grid')" aria-label="Close">&#x2715;</button>
+      <div class="modal-tag">03 — Allocation & Retention</div>
+      <h3 class="modal-title" id="mg-title">Real-Time Grid Allocation & Retention Engines</h3>
+      <p class="modal-body">Live operational dashboards that replace guesswork with certainty — so your resources are
+        always allocated, your revenue is always secured, and your no-show rate approaches zero.</p>
+      <div class="modal-tabs">
+        <button class="tab-btn active" onclick="switchTab(event,'grid','what')">What It Does</button>
+        <button class="tab-btn" onclick="switchTab(event,'grid','how')">How We Build It</button>
+        <button class="tab-btn" onclick="switchTab(event,'grid','result')">Results</button>
+      </div>
+      <div class="tab-panel active" id="grid-what">
+        <p>A real-time visual grid that gives you and your staff a live view of every allocation — slots, tables, bays,
+          rooms, appointments — with instant lock-in on partial deposits.</p>
+        <ul>
+          <li>Color-coded live grid updating in real-time across all staff devices</li>
+          <li>Automatic hold-and-release logic with configurable deposit thresholds</li>
+          <li>Cancellation penalty logic to create real financial commitment</li>
+          <li>SMS/WhatsApp reminders auto-dispatched at configurable intervals</li>
+        </ul>
+      </div>
+      <div class="tab-panel" id="grid-how">
+        <p>Built on WebSocket-powered real-time state management, backed by PostgreSQL row-level locking to prevent
+          double-allocation — even during simultaneous high-traffic booking windows.</p>
+        <ul>
+          <li>Socket.io or Supabase Realtime for live state synchronization</li>
+          <li>Stripe or JazzCash deposit collection built in</li>
+          <li>Mobile-optimized staff dashboard with offline-fallback caching</li>
+          <li>Custom retention rule engine configurable per business type</li>
+        </ul>
+      </div>
+      <div class="tab-panel" id="grid-result">
+        <p>Our allocation and retention systems directly attack two of the most expensive problems in service
+          businesses: empty slots due to no-shows, and chaotic resource scheduling.</p>
+        <ul>
+          <li>No-show rate reduction: down to 4.8% from industry average of 22%</li>
+          <li>Deposit collection compliance: 93.1% across active deployments</li>
+          <li>Staff scheduling conflicts reduced to near-zero within first week</li>
+          <li>Revenue recovery from prevented no-shows averages PKR 47,300/month</li>
+        </ul>
+      </div>
+      <a href="#connect" class="btn-primary" onclick="closeModal('grid')"
+        style="display:inline-flex;margin-top:20px;">Request a Demo Build</a>
+    </div>
+  </div>
+
+  <script>
+    // ── NAV SCROLL ──
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+
+    // ── MOBILE MENU ──
+    const toggle = document.getElementById('mobile-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const iconMenu = document.getElementById('icon-menu');
+    const iconClose = document.getElementById('icon-close');
+
+    toggle.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen);
+      iconMenu.style.display = isOpen ? 'none' : 'block';
+      iconClose.style.display = isOpen ? 'block' : 'none';
+    });
+
+    function closeMobile() {
+      menu.classList.remove('open');
+      toggle.setAttribute('aria-expanded', false);
+      iconMenu.style.display = 'block';
+      iconClose.style.display = 'none';
+    }
+
+    // ── SCROLL REVEAL ──
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+
+    // ── PILLAR ACTIVE ──
+    function setActivePillar(n) {
+      document.querySelectorAll('.pillar').forEach(p => p.classList.remove('active'));
+      document.getElementById('p' + n).classList.add('active');
+    }
+
+    // ── MODALS ──
+    function openModal(id) {
+      const overlay = document.getElementById('modal-' + id);
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      overlay.focus();
+    }
+    function closeModal(id) {
+      document.getElementById('modal-' + id).classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Close on overlay click
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', e => {
+        if (e.target === overlay) {
+          overlay.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.open').forEach(o => {
+          o.classList.remove('open');
+          document.body.style.overflow = '';
+        });
+      }
+    });
+
+    // ── TABS ──
+    function switchTab(event, modalId, tabId) {
+      const modal = document.getElementById('modal-' + modalId);
+      modal.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      modal.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      document.getElementById(modalId + '-' + tabId).classList.add('active');
+    }
+
+    // ── FORM SUBMIT ──
+    function handleSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('f-name').value.trim();
+      const phone = document.getElementById('f-phone').value.trim();
+      const bottleneck = document.getElementById('f-bottleneck').value.trim();
+
+      if (!name || !phone || !bottleneck) {
+        const first = ['f-name', 'f-phone', 'f-bottleneck'].find(id => !document.getElementById(id).value.trim());
+        if (first) {
+          const el = document.getElementById(first);
+          el.style.borderColor = '#EF4444';
+          el.focus();
+          setTimeout(() => el.style.borderColor = '', 2000);
+        }
+        return;
+      }
+
+      // Simulate submission
+      const btn = e.target;
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        document.getElementById('consult-form-wrap').style.display = 'none';
+        document.getElementById('form-success').classList.add('show');
+      }, 1200);
+    }
+  </script>
+</body>
+
+</html>
